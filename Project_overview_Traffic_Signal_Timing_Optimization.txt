@@ -1,0 +1,58 @@
+Project Overview
+This project simulates an agent-based traffic system in NetLogo aimed at optimizing traffic signal timing to minimize vehicle stops, reduce wait times, and enhance flow efficiency. The model includes multiple vehicle types (cars and buses) moving in two directions, adjusting speed based on traffic signals and gathering data on performance metrics. Below, each procedure is explained with its purpose and functionality to provide comprehensive documentation.
+
+Global Variables and Setup
+Globals Section:
+num-cars-stopped, num-buses-stopped: Count vehicles that come to a stop.
+wait-time, bus-wait-time: Track the cumulative wait times of cars and buses, respectively, to gauge delays caused by signals.
+num-cars-slowed, num-buses-slowed: Monitor how many vehicles reduce speed significantly, indicating potential traffic build-up.
+phase and ticks-per-cycle: Control the timing and cycling of the traffic light system.
+green-light-up?: Boolean variable indicating the status of the green light, switching it between the two directions.
+Turtles (Vehicle) Variables
+turtles-own Section:
+speed: The current speed of each vehicle.
+speed-limit: The maximum allowed speed for a vehicle.
+acceleration: Defines how quickly a vehicle can increase speed.
+Speed Management Procedures
+speed-up:
+
+This procedure manages speed increases for vehicles traveling in the main direction. If a vehicle is already at the speed limit, it holds steady; otherwise, it accelerates. This ensures vehicles gradually speed up rather than making sudden jumps.
+opposite-slow-down:
+
+A speed management function for vehicles in the opposite direction, allowing them to reduce speed gradually until they stop. If the vehicle is at a complete stop, its speed is set to zero to avoid negative values.
+opposite-speed-up:
+
+This is similar to speed-up but is for vehicles moving in the opposite direction. It increases speed while respecting the speed limit, helping control traffic flow as vehicles enter less congested zones.
+Vehicle Appearance Based on Speed
+set-car-color:
+
+This procedure visually differentiates vehicles based on speed. Cars below half the speed limit are colored blue, while faster cars get a slightly darker shade, enhancing visual tracking of traffic flow.
+set-oppositecar-color:
+
+Works like set-car-color but for cars in the opposite direction, using red shades to signify lower and higher speeds. This color scheme distinguishes traffic direction and speed at a glance.
+set-bus-color:
+
+Buses in the main direction are colored based on speed, using magenta for slower speeds and a specific color code for higher speeds. Buses are treated differently to help users visually identify different vehicle types.
+set-oppositebus-color:
+
+Like set-bus-color, this changes bus color based on speed in the opposite direction. Shades of a single color represent speed variations, helping users assess traffic flow and congestion.
+Data Recording Procedures
+record-data:
+
+Captures performance metrics for cars, counting stops and incrementing wait-time when vehicles are stopped. This data helps evaluate the effectiveness of signal timing on overall car flow.
+record-busdata:
+
+Similar to record-data but for buses, tracking their stops and wait times separately. Since buses typically carry more passengers, this data allows analysis of their distinct impact on traffic efficiency.
+record-slowed-cardata:
+
+This procedure counts instances where cars slow down to a threshold speed of 0.5 units, recording a fraction of wait time. It provides a finer level of detail to detect traffic build-up areas without complete stops.
+record-slowed-busdata:
+
+Like record-slowed-cardata, this captures slowed speeds in buses. Tracking bus slowdown separately informs adjustments to signal timing or dedicated bus lanes for smoother flow.
+Traffic Light and Phase Control
+change-current:
+
+This procedure switches the traffic signal for a green or red light, toggling green-light-up?. The model simulates an intersection or signal-controlled road, allowing only one direction’s traffic to proceed at a time.
+next-phase:
+
+Advances the phase variable to control when the traffic signal changes. When the phase matches ticks-per-cycle, it resets, ensuring a continuous cycle of green and red lights. This creates a repetitive, controllable signal cycle for each direction.
