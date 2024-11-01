@@ -11,7 +11,7 @@ This project simulates a traffic system using agent-based modeling in NetLogo. T
 - **Data Recording**: The simulation records data on vehicle stops, wait times, and the number of vehicles slowed, providing insights into traffic behavior under different conditions.
 
 ### Screenshots
-![Traffic Signal Simulation - AI2](ai2.png)
+![Traffic Signal Simulation - AI2](ai2.PNG)
 
-![Traffic Signal Simulation - AI3](ai3.png)
+![Traffic Signal Simulation - AI3](ai3.PNG)
 
